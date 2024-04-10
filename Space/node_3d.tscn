@@ -23,13 +23,14 @@ adjustment_enabled = true
 
 [node name="Node3D" type="Node3D"]
 
-[node name="Player" type="RigidBody3D" parent="." node_paths=PackedStringArray("sprite", "BG")]
+[node name="Player" type="RigidBody3D" parent="." node_paths=PackedStringArray("sprite", "BG", "timer")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.77103, -0.36424, -0.89386)
 gravity_scale = 0.0
 script = ExtResource("2_fgdal")
 sprite = NodePath("Spaceship2")
 BG = NodePath("../BackGround")
 Bullet = ExtResource("7_utr0j")
+timer = NodePath("../Timer")
 
 [node name="Spaceship2" type="MeshInstance3D" parent="Player"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.338639, 0.0740709, -0.139324)
@@ -75,3 +76,7 @@ environment = SubResource("Environment_x837m")
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="WorldEnvironment"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 8.05664, 0)
 light_energy = 0.238
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.1
+one_shot = true

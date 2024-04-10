@@ -40,9 +40,3 @@ surface_material_override/0 = SubResource("StandardMaterial3D_tw7a2")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("SphereShape3D_udxsg")
-
-[node name="OmniLight3D" type="OmniLight3D" parent="."]
-transform = Transform3D(2.85714, 0, 0, 0, 2.85714, 0, 0, 0, 2.85714, 0, 0, 0)
-light_energy = 12.26
-light_indirect_energy = 2.015
-light_volumetric_fog_energy = 2.524
