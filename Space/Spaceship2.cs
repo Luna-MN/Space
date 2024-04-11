@@ -5,22 +5,30 @@ using Godot;
 
 public partial class Spaceship2 : RigidBody3D
 {
+	// Game objects
 	[Export]
 	public MeshInstance3D sprite;
 	[Export]
 	public RigidBody3D BG;
 	[Export]
 	public PackedScene Bullet;
-	public Timer timer;
-	public PhysicsDirectSpaceState3D spaceState;
-	public Vector2 mousePos;
-	public Camera3D cam;
-	public Godot.Collections.Dictionary rayA;
-	public Vector3 pos;
-	public enum Weps{Standard ,Fast, Slow, Burst}
-	public Weps Equipped = Weps.Standard;
-	public int BurstFire = 0;
-
+	
+	// Game state
+	private Timer timer;
+	private PhysicsDirectSpaceState3D spaceState;
+	private Vector2 mousePos;
+	private Vector3 pos;
+	
+	// Camera
+	private Camera3D cam;
+	
+	// Raycast
+	private Godot.Collections.Dictionary rayA;
+	
+	// Weapons
+	private enum Weps { Standard, Fast, Slow, Burst }
+	private Weps Equipped = Weps.Standard;
+	private int BurstFire = 0;
 	public override void _Ready()
 	{
         timer = new Timer
