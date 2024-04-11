@@ -17,6 +17,7 @@ public partial class bullet : RigidBody3D
 	if(body != this){
 			GD.Print("hit");
 			GD.Print(body);
+			QueueFree();
 	}
 
 

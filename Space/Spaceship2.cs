@@ -57,29 +57,36 @@ public partial class Spaceship2 : RigidBody3D
 			return (Vector3)rayA["position"];
 		return new Vector3(0,0,0); 
 	}
-	public void bulletF(){
+	public void bulletF()
+	{
 		var fired = Bullet.Instantiate<RigidBody3D>();
 		GetTree().Root.AddChild(fired);
 
 		fired.Position = Position;
-		var posi = ScreenPointToRay() - Position;
+		var mousePos = ScreenPointToRay();
+		mousePos.Y = Position.Y; 
+		var direction = (mousePos - Position).Normalized();
+		direction.Y = 0;
 
-		// velocity is dependent on mouse distance
-		fired.LinearVelocity += new Vector3(posi.Normalized().X*50, 0, posi.Normalized().Z*50);
+		// velocity is now constant in the direction of the mouse position
+		fired.LinearVelocity = direction * 50;
 	}
 	public void ChangeEquipped(){
-		if(Equipped == Weps.Standard){
-			timer.WaitTime = 0.2;
-		}
-		else if(Equipped == Weps.Fast){
-			timer.WaitTime = 0.1;
-		}
-		else if(Equipped == Weps.Slow){
-			timer.WaitTime = 0.3;
-		}
-		else if(Equipped == Weps.Burst){
-			timer.WaitTime = 0.3;
-		}
+    	switch (Equipped)
+		{
+        	case Weps.Standard:
+            	timer.WaitTime = 0.2;
+            	break;
+        	case Weps.Fast:
+            	timer.WaitTime = 0.1;
+            	break;
+        	case Weps.Slow:
+				timer.WaitTime = 0.3;
+        	    break;
+        	case Weps.Burst:
+            	timer.WaitTime = 0.3;
+            	break;
+    	}
 	}
     public override void _Input(InputEvent @event)
     {
