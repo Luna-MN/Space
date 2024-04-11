@@ -1,0 +1,11 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://xqxlm2kdncqt"]
+
+[resource]
+transparency = 1
+vertex_color_use_as_albedo = true
+roughness_texture_channel = 3
+emission_enabled = true
+emission_energy_multiplier = 16.0
+emission_on_uv2 = true
+billboard_mode = 1
+billboard_keep_scale = true
