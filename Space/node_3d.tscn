@@ -1,9 +1,10 @@
-[gd_scene load_steps=11 format=3 uid="uid://s854nwfmoo8t"]
+[gd_scene load_steps=14 format=3 uid="uid://s854nwfmoo8t"]
 
 [ext_resource type="ArrayMesh" uid="uid://6m6rqvv63ne6" path="res://Spaceship Pack - Jan 2018/OBJ/Spaceship2.obj" id="1_afh6h"]
 [ext_resource type="Script" path="res://Spaceship2.cs" id="2_fgdal"]
 [ext_resource type="ArrayMesh" uid="uid://c1nvjvu06p25f" path="res://Spaceship Pack - Jan 2018/OBJ/Spaceship3.obj" id="3_6ukcj"]
 [ext_resource type="PackedScene" uid="uid://dmh2bwjch0qjd" path="res://Spaceship Pack - Jan 2018/FBX/Spaceship4.fbx" id="4_6avoq"]
+[ext_resource type="Script" path="res://Enemy.cs" id="4_vvi7k"]
 [ext_resource type="PackedScene" uid="uid://c8r463xds8m6t" path="res://Spaceship Pack - Jan 2018/FBX/Spaceship5.fbx" id="5_tj466"]
 [ext_resource type="PackedScene" uid="uid://dvxgmd0oybsjv" path="res://Spaceship Pack - Jan 2018/FBX/Spaceship.fbx" id="6_r10vl"]
 [ext_resource type="PackedScene" uid="uid://cuxnme2n4hd6d" path="res://bullet.tscn" id="7_utr0j"]
@@ -11,6 +12,12 @@
 [sub_resource type="BoxShape3D" id="BoxShape3D_74ewc"]
 margin = 0.135
 size = Vector3(1.425, 1, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_p5p5y"]
+size = Vector3(7.96963, 5.64689, 10.4666)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_mevpg"]
+size = Vector3(7.4123, 4.49997, 12.3729)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_afd38"]
 size = Vector3(22.7156, 1, 13.2612)
@@ -40,9 +47,28 @@ skeleton = NodePath("../..")
 transform = Transform3D(3.77, 0, 0, 0, 3.77, 0, 0, 0, 3.77, -0.283037, 0, 0.58)
 shape = SubResource("BoxShape3D_74ewc")
 
-[node name="Spaceship3" type="MeshInstance3D" parent="."]
+[node name="Enemy" type="RigidBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.4187, 0, 1)
+collision_layer = 2049
+collision_mask = 2049
+gravity_scale = 0.0
+script = ExtResource("4_vvi7k")
+
+[node name="Spaceship3" type="MeshInstance3D" parent="Enemy"]
+layers = 2049
 mesh = ExtResource("3_6ukcj")
+skeleton = NodePath("../..")
+
+[node name="Area3D" type="Area3D" parent="Enemy"]
+collision_layer = 0
+collision_mask = 2049
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Enemy/Area3D"]
+shape = SubResource("BoxShape3D_p5p5y")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Enemy"]
+shape = SubResource("BoxShape3D_mevpg")
+disabled = true
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -1.41077, 67.2853, 0.554075)
@@ -68,6 +94,7 @@ shape = SubResource("BoxShape3D_afd38")
 
 [node name="Bullet" parent="." instance=ExtResource("7_utr0j")]
 transform = Transform3D(0.35, 0, 0, 0, 0.35, 0, 0, 0, 0.35, -19.5867, 0.731623, 6.72085)
+collision_layer = 0
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_x837m")
@@ -75,3 +102,5 @@ environment = SubResource("Environment_x837m")
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="WorldEnvironment"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 8.05664, 0)
 light_energy = 0.238
+
+[connection signal="body_entered" from="Enemy/Area3D" to="Enemy" method="enemyEntered"]

@@ -4,7 +4,7 @@ using System;
 public partial class bullet : RigidBody3D
 {
 	// Called when the node enters the scene tree for the first time.
-	public RigidBody3D player;
+
 	public override void _Ready()
 	{
 	}
@@ -12,5 +12,13 @@ public partial class bullet : RigidBody3D
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
+	}
+	private void areaEnter(Node3D body){
+	if(body != this){
+			GD.Print("hit");
+			GD.Print(body);
+	}
+
+
 	}
 }

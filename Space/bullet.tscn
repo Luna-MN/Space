@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://cuxnme2n4hd6d"]
+[gd_scene load_steps=6 format=3 uid="uid://cuxnme2n4hd6d"]
 
 [ext_resource type="Script" path="res://bullet.cs" id="1_edejp"]
 
@@ -23,8 +23,11 @@ grow_amount = -0.36
 [sub_resource type="SphereShape3D" id="SphereShape3D_udxsg"]
 radius = 1.01561
 
+[sub_resource type="SphereShape3D" id="SphereShape3D_kta7r"]
+radius = 1.01051
+
 [node name="Bullet" type="RigidBody3D"]
-transform = Transform3D(0.35, 0, 0, 0, 0.35, 0, 0, 0, 0.35, -0.158684, -0.0475192, 11.4811)
+transform = Transform3D(0.335, 0, 0, 0, 0.335, 0, 0, 0, 0.335, -0.158684, -0.0475192, 11.4811)
 collision_layer = 2048
 collision_mask = 2048
 gravity_scale = 0.0
@@ -38,5 +41,16 @@ mesh = SubResource("SphereMesh_6q41e")
 skeleton = NodePath("../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_tw7a2")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+[node name="Area3D" type="Area3D" parent="."]
+collision_layer = 0
+collision_mask = 2048
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 shape = SubResource("SphereShape3D_udxsg")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_kta7r")
+
+[connection signal="body_entered" from="Area3D" to="." method="areaEnter"]

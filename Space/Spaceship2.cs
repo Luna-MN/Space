@@ -34,7 +34,6 @@ public partial class Spaceship2 : RigidBody3D
 
 	public override void _Process(double delta)
 	{
-		GD.Print(timer);
 		pos = ScreenPointToRay();
 		pos.Y = 0;
 
