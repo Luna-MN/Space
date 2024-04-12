@@ -17,10 +17,10 @@ size = Vector3(1.425, 1, 1)
 size = Vector3(7.96963, 5.64689, 10.4666)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_mevpg"]
-size = Vector3(7.4123, 4.49997, 12.3729)
+size = Vector3(7.2093, 4.49997, 10.2879)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_nn5fr"]
-size = Vector3(73.2695, 6.67038, 63.1963)
+[sub_resource type="BoxShape3D" id="BoxShape3D_iww07"]
+size = Vector3(109.94, 29.4866, 51.2333)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_afd38"]
 size = Vector3(48.8157, 1, 28.1355)
@@ -51,13 +51,13 @@ skeleton = NodePath("../..")
 transform = Transform3D(3.77, 0, 0, 0, 3.77, 0, 0, 0, 3.77, -0.283037, 0, 0.58)
 shape = SubResource("BoxShape3D_74ewc")
 
-[node name="Enemy" type="RigidBody3D" parent="." node_paths=PackedStringArray("BulletDetector")]
+[node name="Enemy" type="RigidBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.4187, 0, 1)
+disable_mode = 1
 collision_layer = 2049
 collision_mask = 2049
 gravity_scale = 0.0
 script = ExtResource("4_73tuu")
-BulletDetector = NodePath("BulletDetector")
 
 [node name="Spaceship3" type="MeshInstance3D" parent="Enemy"]
 layers = 2049
@@ -75,11 +75,11 @@ shape = SubResource("BoxShape3D_p5p5y")
 shape = SubResource("BoxShape3D_mevpg")
 
 [node name="BulletDetector" type="Area3D" parent="Enemy"]
-collision_layer = 8
-collision_mask = 2048
+collision_layer = 2048
+collision_mask = 8
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Enemy/BulletDetector"]
-shape = SubResource("BoxShape3D_nn5fr")
+shape = SubResource("BoxShape3D_iww07")
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -1.41077, 67.2853, 0.554075)
