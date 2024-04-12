@@ -45,7 +45,7 @@ surface_material_override/0 = SubResource("StandardMaterial3D_tw7a2")
 
 [node name="Area3D" type="Area3D" parent="."]
 collision_layer = 2048
-collision_mask = 2048
+collision_mask = 2056
 monitorable = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]

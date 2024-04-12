@@ -14,6 +14,7 @@ public partial class Enemy : RigidBody3D
 
     public override void _Process(double delta){
 		var bullets = BulletDetector.GetOverlappingBodies();
+		GD.Print(bullets);
 		foreach (bullet Bullet in bullets.OfType<bullet>())
 		{
     		// Determine escape direction (perpendicular to bullet's trajectory)

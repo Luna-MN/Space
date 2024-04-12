@@ -96,7 +96,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26.5072, 0, 2.07408)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 36.6172, 0, 1.33807)
 
 [node name="BackGround" type="RigidBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.61447, -4.07893, -0.774834)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.61447, 22.9211, -0.774834)
 gravity_scale = 0.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="BackGround"]
