@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://cuxnme2n4hd6d"]
+[gd_scene load_steps=7 format=3 uid="uid://cuxnme2n4hd6d"]
 
 [ext_resource type="Script" path="res://bullet.cs" id="1_edejp"]
+[ext_resource type="PackedScene" uid="uid://dpapkbkmvacfk" path="res://explosion.tscn" id="2_05onp"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_6q41e"]
 
@@ -32,6 +33,7 @@ collision_layer = 2048
 collision_mask = 2048
 gravity_scale = 0.0
 script = ExtResource("1_edejp")
+ParticleScene = ExtResource("2_05onp")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)

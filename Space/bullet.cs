@@ -4,6 +4,8 @@ using System;
 public partial class bullet : RigidBody3D
 {
 	private Timer timer;
+	[Export]
+	public PackedScene ParticleScene;
 	private void OnTimerTimeout()
 	{
 		GD.Print("bullet killed");
@@ -34,7 +36,10 @@ public partial class bullet : RigidBody3D
 		if(body != this)
 		{
 			GD.Print("hit");
-			GD.Print(body);
+			CpuParticles3D particles = ParticleScene.Instantiate<CpuParticles3D>();
+        	particles.Position = Position; 
+        	GetParent().AddChild(particles);
+			particles.OneShot = true;
 			QueueFree();
 		}
 	}
