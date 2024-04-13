@@ -1,13 +1,13 @@
-[gd_scene load_steps=17 format=3 uid="uid://s854nwfmoo8t"]
+[gd_scene load_steps=14 format=3 uid="uid://s854nwfmoo8t"]
 
 [ext_resource type="ArrayMesh" uid="uid://6m6rqvv63ne6" path="res://Spaceship Pack - Jan 2018/OBJ/Spaceship2.obj" id="1_afh6h"]
 [ext_resource type="Script" path="res://Spaceship2.cs" id="2_fgdal"]
 [ext_resource type="ArrayMesh" uid="uid://c1nvjvu06p25f" path="res://Spaceship Pack - Jan 2018/OBJ/Spaceship3.obj" id="3_6ukcj"]
 [ext_resource type="PackedScene" uid="uid://dmh2bwjch0qjd" path="res://Spaceship Pack - Jan 2018/FBX/Spaceship4.fbx" id="4_6avoq"]
+[ext_resource type="Script" path="res://Enemy.cs" id="4_73tuu"]
 [ext_resource type="PackedScene" uid="uid://c8r463xds8m6t" path="res://Spaceship Pack - Jan 2018/FBX/Spaceship5.fbx" id="5_tj466"]
 [ext_resource type="PackedScene" uid="uid://dvxgmd0oybsjv" path="res://Spaceship Pack - Jan 2018/FBX/Spaceship.fbx" id="6_r10vl"]
 [ext_resource type="PackedScene" uid="uid://cuxnme2n4hd6d" path="res://bullet.tscn" id="7_utr0j"]
-[ext_resource type="Material" uid="uid://xqxlm2kdncqt" path="res://Particle.tres" id="8_bt1d3"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_74ewc"]
 margin = 0.135
@@ -17,26 +17,17 @@ size = Vector3(1.425, 1, 1)
 size = Vector3(7.96963, 5.64689, 10.4666)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_mevpg"]
-size = Vector3(7.4123, 4.49997, 12.3729)
+size = Vector3(7.2093, 4.49997, 10.2879)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_afd38"]
-size = Vector3(22.7156, 1, 13.2612)
+size = Vector3(48.8157, 1, 28.1355)
 
 [sub_resource type="Environment" id="Environment_x837m"]
 background_mode = 1
 background_energy_multiplier = 1.16
+ambient_light_color = Color(1, 1, 1, 1)
 ambient_light_energy = 16.0
 adjustment_enabled = true
-
-[sub_resource type="SphereMesh" id="SphereMesh_eyt2j"]
-
-[sub_resource type="Curve" id="Curve_weowk"]
-max_value = 100.0
-_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.32967, 89.4737), 0.0, 0.0, 0, 0, Vector2(1, 100), 0.0, 0.0, 0, 0]
-point_count = 3
-
-[sub_resource type="Gradient" id="Gradient_3d0lq"]
-colors = PackedColorArray(1, 0, 0, 1, 1, 1, 0, 1)
 
 [node name="Node3D" type="Node3D"]
 
@@ -59,9 +50,11 @@ shape = SubResource("BoxShape3D_74ewc")
 
 [node name="Enemy" type="RigidBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.4187, 0, 1)
+disable_mode = 1
 collision_layer = 2049
 collision_mask = 2049
 gravity_scale = 0.0
+script = ExtResource("4_73tuu")
 
 [node name="Spaceship3" type="MeshInstance3D" parent="Enemy"]
 layers = 2049
@@ -69,8 +62,8 @@ mesh = ExtResource("3_6ukcj")
 skeleton = NodePath("../..")
 
 [node name="Area3D" type="Area3D" parent="Enemy"]
-collision_layer = 8
-collision_mask = 2048
+collision_layer = 2056
+collision_mask = 2056
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Enemy/Area3D"]
 shape = SubResource("BoxShape3D_p5p5y")
@@ -93,7 +86,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26.5072, 0, 2.07408)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 36.6172, 0, 1.33807)
 
 [node name="BackGround" type="RigidBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.61447, -4.07893, -0.774834)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.61447, 22.9211, -0.774834)
 gravity_scale = 0.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="BackGround"]
@@ -110,25 +103,3 @@ environment = SubResource("Environment_x837m")
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="WorldEnvironment"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 8.05664, 0)
 light_energy = 0.238
-
-[node name="CPUParticles3D" type="CPUParticles3D" parent="."]
-transform = Transform3D(-2.07629e-08, -0.475, 0, 0.475, -2.07629e-08, 0, 0, 0, 0.475, -8.28607, -0.320123, -0.113227)
-material_override = ExtResource("8_bt1d3")
-material_overlay = ExtResource("8_bt1d3")
-amount = 33
-explosiveness = 0.26
-randomness = 0.1
-lifetime_randomness = 0.55
-local_coords = true
-mesh = SubResource("SphereMesh_eyt2j")
-spread = 97.73
-gravity = Vector3(0, 0, 0)
-initial_velocity_max = 10.0
-angular_velocity_max = 5.0
-linear_accel_min = -0.3
-linear_accel_max = 0.3
-damping_curve = SubResource("Curve_weowk")
-color_initial_ramp = SubResource("Gradient_3d0lq")
-hue_variation_min = -1.0
-hue_variation_max = 1.0
-anim_speed_max = 12.93
