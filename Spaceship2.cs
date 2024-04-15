@@ -29,6 +29,12 @@ public partial class Spaceship2 : RigidBody3D
 	private enum Weps { Standard, Fast, Slow, Burst }
 	private Weps Equipped = Weps.Standard;
 	private int BurstFire = 0;
+	private enum Elements { Fire, Water, Earth, Air };
+	private Elements Element = Elements.Fire;
+	public bool DoT = false;
+	public bool Slow = false;
+	public bool Earth = false;
+	public bool speed = false;
 
 	public override void _Ready()
 	{
@@ -113,6 +119,21 @@ public partial class Spaceship2 : RigidBody3D
             	break;
     	}
 		GD.Print(Equipped);
+		// start of elemental effects
+		switch(Element){
+			case Elements.Fire:
+				DoT = true;
+				break;
+			case Elements.Water:
+				Slow = true;
+				break;
+			case Elements.Earth:
+				Earth = true;
+				break;
+			case Elements.Air:
+				speed = true;
+				break;
+		}
 	}
 
 	// Input
