@@ -2,24 +2,9 @@
 
 [ext_resource type="Script" path="res://bullet.cs" id="1_edejp"]
 [ext_resource type="PackedScene" uid="uid://dpapkbkmvacfk" path="res://explosion.tscn" id="2_05onp"]
+[ext_resource type="Material" uid="uid://gyhmpijovb4" path="res://BulletMaterial.tres" id="3_v6msl"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_6q41e"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tw7a2"]
-albedo_color = Color(1, 0.839216, 0.0666667, 1)
-metallic = 0.66
-metallic_specular = 1.0
-emission_enabled = true
-emission = Color(0.901961, 0.694118, 0.133333, 1)
-emission_energy_multiplier = 3.16
-heightmap_scale = 5.005
-subsurf_scatter_enabled = true
-subsurf_scatter_strength = 0.2
-subsurf_scatter_skin_mode = true
-backlight_enabled = true
-backlight = Color(1, 1, 1, 1)
-detail_blend_mode = 3
-grow_amount = -0.36
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_udxsg"]
 radius = 1.01561
@@ -41,7 +26,7 @@ gi_mode = 2
 gi_lightmap_scale = 3
 mesh = SubResource("SphereMesh_6q41e")
 skeleton = NodePath("../..")
-surface_material_override/0 = SubResource("StandardMaterial3D_tw7a2")
+surface_material_override/0 = ExtResource("3_v6msl")
 
 [node name="Area3D" type="Area3D" parent="."]
 collision_layer = 2056

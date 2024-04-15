@@ -35,6 +35,7 @@ public partial class Spaceship2 : RigidBody3D
 	public bool Slow = false;
 	public bool Earth = false;
 	public bool speed = false;
+	private Color color = new Color(1, 0, 0);
 
 	public override void _Ready()
 	{
@@ -98,10 +99,13 @@ public partial class Spaceship2 : RigidBody3D
 
 		// Set the velocity of the bullet
 		fired.LinearVelocity = direction * 50;
+
+		((StandardMaterial3D)fired.GetChild<MeshInstance3D>(0).MaterialOverride).AlbedoColor = color;
+
 	}
 
 	// Weapon switching
-	public void ChangeEquipped(){
+	public void ChangeEquipped(Color color){
     	switch (Equipped)
 		{
         	case Weps.Standard:
@@ -123,15 +127,19 @@ public partial class Spaceship2 : RigidBody3D
 		switch(Element){
 			case Elements.Fire:
 				DoT = true;
+				color = new Color(1, 0, 0);
 				break;
 			case Elements.Water:
 				Slow = true;
+				color = new Color(0, 0 ,1);
 				break;
 			case Elements.Earth:
 				Earth = true;
+				color = new Color(0, 1, 0);
 				break;
 			case Elements.Air:
 				speed = true;
+				color = new Color(1, 1, 1);
 				break;
 		}
 	}
@@ -167,14 +175,14 @@ public partial class Spaceship2 : RigidBody3D
 				if(Equipped < 0){
 					Equipped = 0;
 				}
-				ChangeEquipped();
+				ChangeEquipped(color);
 			}
 			if (Input.IsKeyPressed(Key.E)){
 				Equipped += 1;
 				if(Equipped > (Weps)3){
 					Equipped = 0;
 				}
-				ChangeEquipped();
+				ChangeEquipped(color);
 			}
 
 			// Shooting
