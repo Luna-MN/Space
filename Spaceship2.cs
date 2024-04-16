@@ -18,6 +18,8 @@ public partial class Spaceship2 : RigidBody3D
 	private PhysicsDirectSpaceState3D spaceState;
 	private Vector2 mousePos;
 	private Vector3 pos;
+	private bool Dash;
+	private int speed = 1;
 	
 	// Camera
 	private Camera3D cam;
@@ -34,7 +36,7 @@ public partial class Spaceship2 : RigidBody3D
 	public bool DoT = false;
 	public bool Slow = false;
 	public bool Earth = false;
-	public bool speed = false;
+	public bool slow = false;
 	private Color color = new Color(1, 0, 0);
 
 	public override void _Ready()
@@ -138,7 +140,7 @@ public partial class Spaceship2 : RigidBody3D
 				color = new Color(0, 1, 0);
 				break;
 			case Elements.Air:
-				speed = true;
+				slow = true;
 				color = new Color(1, 1, 1);
 				break;
 		}
@@ -152,21 +154,21 @@ public partial class Spaceship2 : RigidBody3D
 			// Movement controls, W and S move forward and backward, A and D strafe, might change these later
 			if (Input.IsKeyPressed(Key.W)){
 				var posi = ScreenPointToRay() - Position;
-				LinearVelocity += new Vector3(posi.Normalized().X, 0, posi.Normalized().Z);
+				LinearVelocity += new Vector3(posi.Normalized().X, 0, posi.Normalized().Z)*speed;
 			}
 			else if (Input.IsKeyPressed(Key.S)){
 				var posi = ScreenPointToRay() - Position;
-				LinearVelocity -= new Vector3(posi.Normalized().X, 0, posi.Normalized().Z);
+				LinearVelocity -= new Vector3(posi.Normalized().X, 0, posi.Normalized().Z)*speed;
 			}
 			else if (Input.IsKeyPressed(Key.A))
         	{
 				var posi = (ScreenPointToRay() - Position).Normalized();
-        	    LinearVelocity = new Vector3(-posi.Z, 0, posi.X);
+        	    LinearVelocity = new Vector3(-posi.Z, 0, posi.X)*speed;
         	}
         	else if (Input.IsKeyPressed(Key.D))
         	{
 				var posi = (ScreenPointToRay() - Position).Normalized();
-            	LinearVelocity = new Vector3(posi.Z, 0, -posi.X);
+            	LinearVelocity = new Vector3(posi.Z, 0, -posi.X)*speed;
         	}
 
 			// Weapon switching
@@ -206,6 +208,12 @@ public partial class Spaceship2 : RigidBody3D
 					}
 				}
 
+			}
+			if(Input.IsKeyPressed(Key.Shift)){
+				speed = 3;
+			}
+			else{
+				speed = 1;
 			}
 		}
     }
