@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://s854nwfmoo8t"]
+[gd_scene load_steps=16 format=3 uid="uid://s854nwfmoo8t"]
 
 [ext_resource type="ArrayMesh" uid="uid://6m6rqvv63ne6" path="res://Spaceship Pack - Jan 2018/OBJ/Spaceship2.obj" id="1_afh6h"]
 [ext_resource type="Script" path="res://Spaceship2.cs" id="2_fgdal"]
@@ -29,6 +29,13 @@ background_energy_multiplier = 1.16
 ambient_light_color = Color(1, 1, 1, 1)
 ambient_light_energy = 16.0
 adjustment_enabled = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_m36w8"]
+transparency = 1
+blend_mode = 1
+cull_mode = 2
+shading_mode = 0
+vertex_color_use_as_albedo = true
 
 [node name="Node3D" type="Node3D"]
 
@@ -106,4 +113,6 @@ transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 8.0
 light_energy = 0.238
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+material_override = SubResource("StandardMaterial3D_m36w8")
 script = ExtResource("9_wdor3")
+EndColor = Color(0.466667, 0.00392157, 0.909804, 1)
