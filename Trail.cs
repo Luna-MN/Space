@@ -129,9 +129,11 @@ public partial class Trail : MeshInstance3D
             surfaceTool.AddVertex(ToLocal(Points[i]) + currWidth);
             surfaceTool.SetUV(new Vector2(t1, 1));
             surfaceTool.AddVertex(ToLocal(Points[i]) - currWidth);
+            surfaceTool.SetUV(new Vector2(t0, 1));
+            surfaceTool.AddVertex(ToLocal(Points[i]) + currWidth);
         }
 
         // Commit the changes to the mesh
-        surfaceTool.Commit((ArrayMesh)Mesh);
+        Mesh = surfaceTool.Commit();
     }
 }

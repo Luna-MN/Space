@@ -10,6 +10,13 @@
 [ext_resource type="PackedScene" uid="uid://cuxnme2n4hd6d" path="res://bullet.tscn" id="7_utr0j"]
 [ext_resource type="Script" path="res://Trail.cs" id="9_wdor3"]
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_m36w8"]
+transparency = 1
+blend_mode = 1
+cull_mode = 2
+shading_mode = 0
+vertex_color_use_as_albedo = true
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_74ewc"]
 margin = 0.135
 size = Vector3(1.425, 1, 1)
@@ -30,13 +37,6 @@ ambient_light_color = Color(1, 1, 1, 1)
 ambient_light_energy = 16.0
 adjustment_enabled = true
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_m36w8"]
-transparency = 1
-blend_mode = 1
-cull_mode = 2
-shading_mode = 0
-vertex_color_use_as_albedo = true
-
 [node name="Node3D" type="Node3D"]
 
 [node name="Player" type="RigidBody3D" parent="." node_paths=PackedStringArray("sprite", "BG")]
@@ -51,6 +51,13 @@ Bullet = ExtResource("7_utr0j")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.338639, 0.0740709, -0.139324)
 mesh = ExtResource("1_afh6h")
 skeleton = NodePath("../..")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Player"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.333482, 0.36424, 0.89386)
+material_override = SubResource("StandardMaterial3D_m36w8")
+skeleton = NodePath("../..")
+script = ExtResource("9_wdor3")
+EndColor = Color(0.466667, 0.00392157, 0.909804, 1)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Player"]
 transform = Transform3D(3.77, 0, 0, 0, 3.77, 0, 0, 0, 3.77, -0.283037, 0, 0.58)
@@ -111,8 +118,3 @@ environment = SubResource("Environment_x837m")
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="WorldEnvironment"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 8.05664, 0)
 light_energy = 0.238
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-material_override = SubResource("StandardMaterial3D_m36w8")
-script = ExtResource("9_wdor3")
-EndColor = Color(0.466667, 0.00392157, 0.909804, 1)
