@@ -52,7 +52,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.338639, 0.0740709, -0.1393
 mesh = ExtResource("1_afh6h")
 skeleton = NodePath("../..")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Player"]
+[node name="Trail" type="MeshInstance3D" parent="Player"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.333482, 0.36424, 0.89386)
 material_override = SubResource("StandardMaterial3D_m36w8")
 skeleton = NodePath("../..")
