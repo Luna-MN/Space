@@ -101,9 +101,6 @@ public partial class Spaceship2 : RigidBody3D
 
 		// Set the velocity of the bullet
 		fired.LinearVelocity = direction * 50;
-
-		((StandardMaterial3D)fired.GetChild<MeshInstance3D>(0).MaterialOverride).AlbedoColor = color;
-
 	}
 
 	// Weapon switching
@@ -124,26 +121,6 @@ public partial class Spaceship2 : RigidBody3D
             	timer.WaitTime = 0.5;
             	break;
     	}
-		GD.Print(Equipped);
-		// start of elemental effects
-		switch(Element){
-			case Elements.Fire:
-				DoT = true;
-				color = new Color(1, 0, 0);
-				break;
-			case Elements.Water:
-				Slow = true;
-				color = new Color(0, 0 ,1);
-				break;
-			case Elements.Earth:
-				Earth = true;
-				color = new Color(0, 1, 0);
-				break;
-			case Elements.Air:
-				slow = true;
-				color = new Color(1, 1, 1);
-				break;
-		}
 	}
 
 	// Input
