@@ -56,7 +56,6 @@ public partial class Spaceship2 : RigidBody3D
 		// Look at mouse position
 		pos = ScreenPointToRay();
 		pos.Y = 0;
-
 		sprite.LookAt(pos, Vector3.Up, true);
 
 		var mid = Position.Lerp(pos, 0.5f);
