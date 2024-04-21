@@ -28,10 +28,6 @@ public partial class bullet : RigidBody3D
 		lifetime.Connect("timeout", callable);
 	}
 
-	// Called every frame. 'delta' is the elapsed time since the previous frame.
-	public override void _Process(double delta)
-	{
-	}
 	// Called when the node enters the area
 	private void areaEnter(Node3D body)
 	{

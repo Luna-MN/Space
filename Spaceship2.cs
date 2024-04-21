@@ -33,10 +33,6 @@ public partial class Spaceship2 : RigidBody3D
 	private int BurstFire = 0;
 	private enum Elements { Fire, Water, Earth, Air };
 	private Elements Element = Elements.Fire;
-	public bool DoT = false;
-	public bool Slow = false;
-	public bool Earth = false;
-	public bool slow = false;
 	private Color color = new Color(1, 0, 0);
 
 	public override void _Ready()
