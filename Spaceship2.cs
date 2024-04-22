@@ -99,7 +99,7 @@ public partial class Spaceship2 : RigidBody3D
 	}
 
 	// Weapon switching
-	public void ChangeEquipped(Color color){
+	public void ChangeEquipped(){
     	switch (Equipped)
 		{
         	case Weps.Standard:
@@ -149,14 +149,14 @@ public partial class Spaceship2 : RigidBody3D
 				if(Equipped < 0){
 					Equipped = 0;
 				}
-				ChangeEquipped(color);
+				ChangeEquipped();
 			}
 			if (Input.IsKeyPressed(Key.E)){
 				Equipped += 1;
 				if(Equipped > (Weps)3){
 					Equipped = 0;
 				}
-				ChangeEquipped(color);
+				ChangeEquipped();
 			}
 
 			// Shooting
