@@ -31,10 +31,6 @@ public partial class Spaceship2 : RigidBody3D
 	private enum Weps { Standard, Fast, Slow, Burst }
 	private Weps Equipped = Weps.Standard;
 	private int BurstFire = 0;
-	private enum Elements { Fire, Water, Earth, Air };
-	private Elements Element = Elements.Fire;
-	private Color color = new Color(1, 0, 0);
-
 	public override void _Ready()
 	{
 		// Timer for weapon cooldown
